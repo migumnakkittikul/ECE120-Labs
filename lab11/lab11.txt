@@ -1,0 +1,23 @@
+Question 1: Describe the errors that occur when trying to assemble lab11.asm. Identify the cause of each error.
+
+line 14: missing the opcode to tell the program that x3000 is the origin address
+line 16: because line 14 .ORIG is missing, so line 16 instruction before .ORIG causes an error
+line 17: x3010 is not defined, so the constant -1 in x3010 is out of range
+line 19: the operand is the error because there is an extra comma
+line 30: the address x300F is not defined and clear R5 to 0 as intended
+line 32: the order of nzp is reversed, p comes before z, so there is an error.
+line 41: there is no statement telling to program to end
+
+Question 2: For each label in the code, write down the corresponding memory location. 
+
+OUTERLOOP: x3005
+INNERLOOP: x3006
+INPUT: x300F
+RESULT: x303F
+
+I added the label ZERO and NegOne. Label ZERO is used to initialize to 0, and label NegOne is used to make R2 contain -1.
+
+
+Question 3: Between using labels and explicit memory locations/offsets, which one makes the most sense, and why?
+
+Using labels makes the most sense. This is because we can name them to make our program more understandable and improve the readability. It can also act as a reminder of the program of what that line is doing. 

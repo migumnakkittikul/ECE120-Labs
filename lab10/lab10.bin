@@ -1,0 +1,22 @@
+; This is the file you will use for the lab assignment
+; Make sure to comment your code properly and don't exceed 
+; the line limitation for this assignment.  Good luck!
+; I approached this problem by having the program checking each number by looping until the count decrease from 10 to zero. When the program encounters a negative number, it simply ignore and skips to check the next number in the list.
+; R4: counter, R5: sum, R3:address, R6: value of address
+
+0011 0001 0000 0000 ; x3100 - starting address of the program
+
+; The program description and code starts here
+1110 011 000110001; LEA, 	R3<-x3132 assign address to R3 as x3132 instead of x3130
+0110 110 011 000000; LDR, 	R6<-M[R3+0], assign value to R6
+0101 100 100 1 00000; AND, 	R4 AND 0 to make it = 0
+0001 100 100 1 01010; AND, 	R4 having value of 10
+0101 101 101 1 00000; AND, 	set sum R5 = 0
+0001 110 110 1 00000; ADD, 	R6 ADD 0 = R6 for branch to loop
+0000 100 000000001;BR, 		if R6<0 -> jump to x3108, false -> add to sum
+0001 101 101 0 00 110;ADD, 	R5 <- R5+R6, add number to sum
+0001 011 011 1 00001; ADD, 	R3+1, go to next address
+0110 110 011 000000; LDR, 	assign R6 new value
+0001 100 100 1 11111; ADD, 	count -1
+0000 001 111111001; BR, 	if count > 0 , go back to x3105, false -> go to next step (halt)
+1111 0000 0010 0101;TRAP, 	when count = 0 -> halt the program
